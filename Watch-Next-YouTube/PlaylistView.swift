@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  PlaylistView.swift
 //  watch-next-swift-ui-test
 //
 //  Created by Mikolaj Lukasik on 15/05/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct PlaylistView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     let playlist: [Video] = Playlist.current
     var archive: [Video] = Archive.current
@@ -292,10 +292,10 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            ContentView()
+            PlaylistView()
             .previewDisplayName("Current Build")
             
-            ContentView()
+            PlaylistView()
                 .previewDevice(PreviewDevice(rawValue: "iPhone Xs Max"))
             .previewDisplayName("iPhone Xs Max")
         }
