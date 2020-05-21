@@ -5,6 +5,9 @@
 ## User settings
 xcuserdata/
 
+## API INFO - Comment this for development, uncomment for pushing to github
+Watch-Next-YouTube/GoogleService-Info.plist
+
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint
 *.xccheckout
@@ -55,7 +58,7 @@ playground.xcworkspace
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 Pods/
-Watch-Next-YouTube/GoogleService-Info.plist
+
 
 #
 # Add this line if you want to avoid checking in source code from the Xcode workspace
