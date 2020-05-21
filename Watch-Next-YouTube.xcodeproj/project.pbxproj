@@ -17,7 +17,7 @@
 		C870E6B32476F5CD004C07CB /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6B12476F5CD004C07CB /* Archive.swift */; };
 		C870E6B42476F5CD004C07CB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6B22476F5CD004C07CB /* Playlist.swift */; };
 		C870E6BB2476F628004C07CB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6BA2476F628004C07CB /* Video.swift */; };
-		C870E6BD2476F632004C07CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6BC2476F632004C07CB /* ContentView.swift */; };
+		C870E6BD2476F632004C07CB /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6BC2476F632004C07CB /* PlaylistView.swift */; };
 		C870E6BF2476F917004C07CB /* SettingsControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6BE2476F917004C07CB /* SettingsControllerView.swift */; };
 		C8C4231C246AE69F00EC932B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8C4231B246AE69F00EC932B /* GoogleService-Info.plist */; };
 		C8E1838724742FE9000B1DF2 /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E1838624742FE9000B1DF2 /* SignInWithApple.swift */; };
@@ -38,7 +38,7 @@
 		C870E6B12476F5CD004C07CB /* Archive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
 		C870E6B22476F5CD004C07CB /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		C870E6BA2476F628004C07CB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		C870E6BC2476F632004C07CB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C870E6BC2476F632004C07CB /* PlaylistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		C870E6BE2476F917004C07CB /* SettingsControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsControllerView.swift; sourceTree = "<group>"; };
 		C8C4231B246AE69F00EC932B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8E1838624742FE9000B1DF2 /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 				C870E6B02476F5B2004C07CB /* Data */,
 				C8E1838524742A14000B1DF2 /* Authorization helpers */,
 				C81360D72464287200CA693D /* AppDelegate.swift */,
-				C870E6BC2476F632004C07CB /* ContentView.swift */,
+				C870E6BC2476F632004C07CB /* PlaylistView.swift */,
 				C81360D92464287200CA693D /* SceneDelegate.swift */,
 				C81360DB2464287200CA693D /* OldViewController.swift */,
 				C81360E02464287300CA693D /* Assets.xcassets */,
@@ -256,7 +256,7 @@
 				C8E1838724742FE9000B1DF2 /* SignInWithApple.swift in Sources */,
 				C870E6B42476F5CD004C07CB /* Playlist.swift in Sources */,
 				C870E6AF2476EC67004C07CB /* MainView.swift in Sources */,
-				C870E6BD2476F632004C07CB /* ContentView.swift in Sources */,
+				C870E6BD2476F632004C07CB /* PlaylistView.swift in Sources */,
 				C870E6BF2476F917004C07CB /* SettingsControllerView.swift in Sources */,
 				C870E6BB2476F628004C07CB /* Video.swift in Sources */,
 				C870E6B32476F5CD004C07CB /* Archive.swift in Sources */,

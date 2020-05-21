@@ -11,7 +11,7 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            ContentView()
+            PlaylistView()
                 .tabItem {
                     VStack{
                         Image(systemName: "list.bullet")
