@@ -2,11 +2,13 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-## User settings
-xcuserdata/
 
 ## API INFO - Comment this for development, uncomment for pushing to github
 Watch-Next-YouTube/GoogleService-Info.plist
+
+## User settings
+xcuserdata/
+
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint
@@ -93,4 +95,5 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+.DS_Store
 
