@@ -13,6 +13,9 @@
 		C81360DC2464287200CA693D /* OldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81360DB2464287200CA693D /* OldViewController.swift */; };
 		C81360E12464287300CA693D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C81360E02464287300CA693D /* Assets.xcassets */; };
 		C81360E42464287300CA693D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C81360E22464287300CA693D /* LaunchScreen.storyboard */; };
+		C81CB62B24796355008CA896 /* AccountAuthorizationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81CB62A24796355008CA896 /* AccountAuthorizationScreen.swift */; };
+		C81CB62D24796C49008CA896 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81CB62C24796C49008CA896 /* SessionStore.swift */; };
+		C81CB62F2479791B008CA896 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81CB62E2479791B008CA896 /* LoginScreen.swift */; };
 		C870E6AF2476EC67004C07CB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6AE2476EC67004C07CB /* MainView.swift */; };
 		C870E6B32476F5CD004C07CB /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6B12476F5CD004C07CB /* Archive.swift */; };
 		C870E6B42476F5CD004C07CB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870E6B22476F5CD004C07CB /* Playlist.swift */; };
@@ -34,6 +37,9 @@
 		C81360E02464287300CA693D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C81360E32464287300CA693D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C81360E52464287300CA693D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C81CB62A24796355008CA896 /* AccountAuthorizationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAuthorizationScreen.swift; sourceTree = "<group>"; };
+		C81CB62C24796C49008CA896 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		C81CB62E2479791B008CA896 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		C870E6AE2476EC67004C07CB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C870E6B12476F5CD004C07CB /* Archive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
 		C870E6B22476F5CD004C07CB /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -107,6 +113,8 @@
 				C8C4231B246AE69F00EC932B /* GoogleService-Info.plist */,
 				C870E6AE2476EC67004C07CB /* MainView.swift */,
 				C870E6BE2476F917004C07CB /* SettingsControllerView.swift */,
+				C81CB62A24796355008CA896 /* AccountAuthorizationScreen.swift */,
+				C81CB62E2479791B008CA896 /* LoginScreen.swift */,
 			);
 			path = "Watch-Next-YouTube";
 			sourceTree = "<group>";
@@ -132,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				C8E1838624742FE9000B1DF2 /* SignInWithApple.swift */,
+				C81CB62C24796C49008CA896 /* SessionStore.swift */,
 			);
 			path = "Authorization helpers";
 			sourceTree = "<group>";
@@ -251,14 +260,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81CB62F2479791B008CA896 /* LoginScreen.swift in Sources */,
 				C81360DC2464287200CA693D /* OldViewController.swift in Sources */,
 				C81360D82464287200CA693D /* AppDelegate.swift in Sources */,
+				C81CB62D24796C49008CA896 /* SessionStore.swift in Sources */,
 				C8E1838724742FE9000B1DF2 /* SignInWithApple.swift in Sources */,
 				C870E6B42476F5CD004C07CB /* Playlist.swift in Sources */,
 				C870E6AF2476EC67004C07CB /* MainView.swift in Sources */,
 				C870E6BD2476F632004C07CB /* PlaylistView.swift in Sources */,
 				C870E6BF2476F917004C07CB /* SettingsControllerView.swift in Sources */,
 				C870E6BB2476F628004C07CB /* Video.swift in Sources */,
+				C81CB62B24796355008CA896 /* AccountAuthorizationScreen.swift in Sources */,
 				C870E6B32476F5CD004C07CB /* Archive.swift in Sources */,
 				C81360DA2464287200CA693D /* SceneDelegate.swift in Sources */,
 			);

@@ -26,8 +26,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print("no user")
         }
         
+        
         // Create the SwiftUI view that provides the window contents.
-        let contentView = MainView()
+        let contentView = MainView().environmentObject(SessionStore())
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

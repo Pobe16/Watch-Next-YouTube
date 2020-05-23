@@ -10,14 +10,22 @@ import SwiftUI
 
 struct SettingsControllerView: View {
     var body: some View {
-        VStack{
-            Spacer()
-            Text("Settings")
-            Spacer()
-            SignInWithApple()
-                .frame(width: 280, height: 60)
-            Spacer()
+        
+        
+        
+        NavigationView (){
+            List {
+                Text("Option1")
+            }
+            .listStyle(GroupedListStyle())
+            
+            AccountAuthorizationScreen()
+                
         }
+        .navigationViewStyle(DoubleColumnNavigationViewStyle())
+            // THIS IS A HACK!!!
+            // adding padding to the navigation view displays it in the same way as UISplitViewController on the iPad in Vertical Mode
+        .padding(.all, 1)
     }
 }
 
@@ -26,3 +34,5 @@ struct SettingsController_Previews: PreviewProvider {
         SettingsControllerView()
     }
 }
+
+

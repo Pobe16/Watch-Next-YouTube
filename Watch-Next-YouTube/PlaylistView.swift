@@ -294,10 +294,6 @@ struct ContentView_Previews: PreviewProvider {
         Group{
             PlaylistView()
             .previewDisplayName("Current Build")
-            
-            PlaylistView()
-                .previewDevice(PreviewDevice(rawValue: "iPhone Xs Max"))
-            .previewDisplayName("iPhone Xs Max")
         }
         
     }
