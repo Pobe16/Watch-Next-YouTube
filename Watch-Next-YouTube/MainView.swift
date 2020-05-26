@@ -11,27 +11,26 @@ import SwiftUI
 
 struct MainView: View {
     
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var firebaseAccount: FirebaseAccountAuthorization
    
     init() {
         UITabBar.appearance().barTintColor = UIColor(named: "background_transparent")
     }
     
     func getUser () {
-        session.listen()
-        print(session.currentUser?.uid ?? "uid not found")
+        firebaseAccount.listen()
+        print(firebaseAccount.currentUser?.uid ?? "uid not found")
     }
 
     var body: some View {
         Group {
-            if session.currentUser != nil {
+            if firebaseAccount.currentUser != nil {
                 TabView {
                     PlaylistView()
                         .tabItem {
                             VStack{
                                 Image(systemName: "list.bullet")
                                 Text("Playlist")
-                                    .font(.largeTitle)
                             }
                     }
                     SettingsControllerView()
@@ -39,11 +38,10 @@ struct MainView: View {
                         VStack{
                             Image(systemName: "gear")
                             Text("Settings")
-                            .font(.largeTitle)
                         }
                     }
                 }
-                .accentColor(.purple)
+                .accentColor(.green)
             } else {
                 AccountAuthorizationScreen()
             }
@@ -56,6 +54,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-        .environmentObject(SessionStore())
+        .environmentObject(FirebaseAccountAuthorization())
     }
 }
