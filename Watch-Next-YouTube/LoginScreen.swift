@@ -24,11 +24,7 @@ struct LoginScreen: View {
                 self.showAppleLogin()
             }
             
-            Button(action: {
-                self.logOut()
-            }) {
-                Text("Log out")
-            }
+            ExtractedView()
             
         }
     }
@@ -39,14 +35,28 @@ struct LoginScreen: View {
         
     }
     
-    private func logOut() {
-        let _ = firebaseAccount.signOut()
-    }
-    
 }
 
 struct LoginScreen_Previews: PreviewProvider {
     static var previews: some View {
         LoginScreen()
     }
+}
+
+struct ExtractedView: View {
+    
+    @EnvironmentObject var firebaseAccount: FirebaseAccountAuthorization
+    
+    var body: some View {
+        Button(action: {
+            self.logOut()
+        }) {
+            Text("Log out")
+        }
+    }
+    
+    private func logOut() {
+        let _ = firebaseAccount.signOut()
+    }
+    
 }

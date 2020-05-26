@@ -9,12 +9,12 @@
 import UIKit
 import SwiftUI
 
-struct MainView: View {
+struct AuthorizationChecker: View {
     
     @EnvironmentObject var firebaseAccount: FirebaseAccountAuthorization
    
     init() {
-        UITabBar.appearance().barTintColor = UIColor(named: "background_transparent")
+        UITabBar.appearance().barTintColor = UIColor(named: "background_regular")
     }
     
     func getUser () {
@@ -46,14 +46,13 @@ struct MainView: View {
                 AccountAuthorizationScreen()
             }
         }
-        .onAppear(perform: getUser)
         
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        AuthorizationChecker()
         .environmentObject(FirebaseAccountAuthorization())
     }
 }
