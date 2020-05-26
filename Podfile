@@ -9,5 +9,6 @@ target 'Watch-Next-YouTube' do
   	# Pods for Watch-Next-YouTube
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
+	pod 'GoogleSignIn'
 
 end
