@@ -174,7 +174,7 @@ struct PlaylistView: View {
                                 Button(action: { print("Delete video \(item.id)") }) {
                                     Image(systemName: "minus.circle.fill")
                                         .resizable()
-                                        .background(Color.white)
+//                                        .background(Color.white)
                                         .frame(width: 30, height: 30)
                                         .cornerRadius(16)
                                         .foregroundColor(.red)

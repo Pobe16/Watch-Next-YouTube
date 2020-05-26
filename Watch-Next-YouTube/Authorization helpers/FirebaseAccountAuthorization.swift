@@ -1,5 +1,5 @@
 //
-//  SessionStore.swift
+//  FirebaseAccountAuthorization.swift
 //  Watch-Next-YouTube
 //
 //  Created by Mikolaj Lukasik on 23/05/2020.
@@ -107,10 +107,11 @@ class FirebaseAccountAuthorization : NSObject, ObservableObject {
         request.requestedScopes = [.fullName, .email]
         request.nonce = sha256(nonce)
 
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-//        authorizationController.delegate = self
-//        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
+        let authorizationControllerApple = ASAuthorizationController(authorizationRequests: [request])
+        
+        authorizationControllerApple.delegate = self
+        
+        authorizationControllerApple.performRequests()
     }
 
     @available(iOS 13, *)
@@ -156,6 +157,8 @@ extension FirebaseAccountAuthorization: ASAuthorizationControllerDelegate {
                     print(error?.localizedDescription ?? "Unknown error")
                     return
                 }
+                print("properly logged in")
+                self.currentUser = authResult?.user
             }
         }
     }

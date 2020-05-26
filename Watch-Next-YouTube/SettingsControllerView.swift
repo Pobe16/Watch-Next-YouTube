@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct SettingsControllerView: View {
+    init() {
+        UINavigationBar.appearance().backgroundColor = UIColor(named: "background_regular")
+    }
+    
     var body: some View {
-        
-        
         
         NavigationView (){
             List {
@@ -20,6 +22,8 @@ struct SettingsControllerView: View {
             .listStyle(GroupedListStyle())
             
             AccountAuthorizationScreen()
+                .background(Color("background_regular"))
+                .navigationBarTitle("Account")
                 
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())

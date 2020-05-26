@@ -17,7 +17,7 @@ struct AccountAuthorizationScreen: View {
     var body: some View {
         VStack{
             
-            Picker("Options", selection: $authType) {
+            Picker("Authorization Select", selection: $authType) {
                 ForEach(0 ..< authTypeDescription.count) { index in
                     Text(self.authTypeDescription[index])
                         .tag(index)
@@ -26,16 +26,16 @@ struct AccountAuthorizationScreen: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding()
-            
-            Spacer()
+            .padding(.horizontal, 80)
             
             if authType == 0 {
                 LoginScreen()
             } else {
-                /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+                RegisterScreen()
             }
             Spacer()
         }
+        .background(Color("background_regular"))
     }
 }
 

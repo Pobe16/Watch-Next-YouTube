@@ -1,52 +1,42 @@
 //
-//  LoginScreen.swift
+//  RegisterScreen.swift
 //  Watch-Next-YouTube
 //
-//  Created by Mikolaj Lukasik on 23/05/2020.
+//  Created by Mikolaj Lukasik on 26/05/2020.
 //  Copyright © 2020 Mikolaj Lukasik. All rights reserved.
 //
 
 import SwiftUI
-import AuthenticationServices
 
-struct LoginScreen: View {
+struct RegisterScreen: View {
     
     @EnvironmentObject var firebaseAccount: FirebaseAccountAuthorization
     
     var body: some View {
         VStack{
-            Text("Welcome back! Please log in here:")
+            Text("Hello, please register:")
                 .font(.largeTitle)
             
-            ContinueWithApple()
+            SignInWithApple()
             .frame(width: 280, height: 60)
             .onTapGesture {
                 self.showAppleLogin()
             }
             
-            Button(action: {
-                self.logOut()
-            }) {
-                Text("Log out")
-            }
-            
         }
     }
+    
+    
     
     private func showAppleLogin() {
         
         firebaseAccount.startSignInWithAppleFlow()
         
     }
-    
-    private func logOut() {
-        let _ = firebaseAccount.signOut()
-    }
-    
 }
 
-struct LoginScreen_Previews: PreviewProvider {
+struct RegisterScreen_Previews: PreviewProvider {
     static var previews: some View {
-        LoginScreen()
+        RegisterScreen()
     }
 }
