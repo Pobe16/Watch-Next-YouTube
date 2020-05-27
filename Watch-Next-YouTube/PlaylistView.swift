@@ -12,17 +12,7 @@ struct PlaylistView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     let playlist: [Video] = Playlist.current
     var archive: [Video] = Archive.current
-    @State private var expandedArchives: Set<Video> = []
-    
-    func adaptForSmallScreen() -> Bool {
-        switch horizontalSizeClass {
-        case .compact:
-            return true
-        default:
-            return false
-        }
-    }
-    
+        
     func formatDuration(from seconds: Double) -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
@@ -47,151 +37,26 @@ struct PlaylistView: View {
         return formatDuration(from: duration)
     }
     
-    func tapArchiveFilm(for video: Video) {
-        if expandedArchives.contains(video) {
-            expandedArchives.remove(video)
-        } else {
-            expandedArchives.removeAll()
-            expandedArchives.insert(video)
-        }
-    }
-    
-    func getOpacity (for videoInArchive: Video) -> Double {
-        if expandedArchives.contains(videoInArchive) {
-            return 1.0
-        } else {
-            return 0.5
-        }
-    }
-    
     
     var body: some View {
         
         ZStack() {
-            ScrollView(.vertical, content: {
-                Spacer()
-                    .frame(height: 135)
-                ScrollView(.horizontal, content: {
-                    
-                    HStack(spacing: 30) {
-                        ForEach(archive) { item in
-                            
-                            HStack(spacing: 0) {
-                                Image(item.imageName)
-                                    .resizable()
-                                    .aspectRatio(1.777, contentMode: .fill)
-                                    .frame(height: 120)
-                                    .onTapGesture {
-                                        self.tapArchiveFilm(for: item)
-                                    }
-                                
-                                if self.expandedArchives.contains(item) {
-                                    VStack(alignment: .leading ) {
-                                        Text(item.title)
-                                            .padding(.top, 10)
-                                            .padding(.horizontal, 10)
-                                            .frame(width: 200)
-                                            .clipped()
-                                        
-                                        Spacer()
-                                        
-                                        HStack {
-                                            Text("Add again?")
-                                                .padding(.leading, 10)
-                                            
-                                            Spacer()
-                                            
-                                            Image(systemName: "plus.circle.fill")
-                                                .resizable()
-                                                .foregroundColor(.green)
-                                                .frame(width: 30,
-                                                       height: 30)
-                                                .padding(.bottom, 10)
-                                                .padding(.trailing, self.adaptForSmallScreen() ? 4 : 10)
-                                        }
-        
-                                    }
-                                        .background(Color("background_regular"))
-                                }
-                            }
-                                .background(Color("background_regular"))
-                                .cornerRadius(15).shadow(color: Color("background_shadow_dark"), radius: 5, x: 10, y: 10)
-                                .shadow(color: Color("background_shadow_light"), radius: 5, x: -10, y: -10)
-                                .padding()
-                                .opacity(self.getOpacity(for: item))
-                        }
-                    }
-                })
-                    .padding()
-                    .frame(height: 150)
-                    .animation(.linear(duration: 0.2))
+            VStack{
+//            ScrollView(.vertical, content: {
                 
-                ForEach(playlist) { (item: Video) in
-                    HStack {
-                        Text("⋮")
-                            .font(Font.system(size: 60))
-                            .fontWeight(.black)
-                            .frame(width: 25.0)
-                            .padding(0)
-                            .foregroundColor(.gray)
-                        
-                        Image(item.imageName)
-                            .resizable()
-                            .aspectRatio(1.777, contentMode: .fit)
-                            .frame(height: 150.0)
-                            .cornerRadius(20)
-                            .shadow(color: Color("background_shadow_dark"), radius: 5, x: 10, y: 10)
-                            .shadow(color: Color("background_shadow_light"), radius: 5, x: -10, y: -10)
-                        
-                        Spacer()
-                            .frame(width: 25.0)
-                        
-                        VStack(alignment: .leading) {
-                            Text(item.title)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.75)
-                                .font(.largeTitle)
-                            Text("by " + item.author)
-                                .font(.body)
-                            Text(self.formatViews(item.numberOfViews) + " views")
-                                .foregroundColor(.secondary)
-                                .padding(.bottom)
-                            Spacer()
-                            HStack{
-                                Text(self.formatDuration(from: item.duration))
-                                    .font(.body)
-                                    .padding()
-                                    .frame(width:150)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 5)
-                                            .stroke(Color.clear, lineWidth: 4)
-                                            .shadow(color: Color("background_shadow_dark"), radius: 3, x: 5, y: 5)
-                                            .shadow(color: Color("background_shadow_light"), radius: 3, x: -5, y: -5)
-                                    )
-                                    .cornerRadius(5)
-                                Spacer()
-                                
-                                Button(action: { print("Delete video \(item.id)") }) {
-                                    Image(systemName: "minus.circle.fill")
-                                        .resizable()
-//                                        .background(Color.white)
-                                        .frame(width: 30, height: 30)
-                                        .cornerRadius(16)
-                                        .foregroundColor(.red)
-                                        .opacity(0.5)
-                                        .padding(.trailing)
-                                    
-                                }
-                                
-                            }
-                            
-                        }
-                    }
-                }
                 Spacer()
-                    .frame(height: 125)
-            })
-                .background(Color("background_regular"))
+                .frame(height: 135)
+                
+                ArchiveOld()
+                PlaylistVideoList(playlist: playlist)
+                
+                Spacer()
+                .frame(height: 125)
+                
+//            })
+            }
+            .background(Color("background_regular"))
+            
             
             
             
