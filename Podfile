@@ -10,5 +10,6 @@ target 'Watch-Next-YouTube' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
 	pod 'GoogleSignIn'
+	pod 'YouTubePlayer'
 
 end

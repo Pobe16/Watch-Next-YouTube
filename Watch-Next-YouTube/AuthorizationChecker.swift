@@ -25,23 +25,7 @@ struct AuthorizationChecker: View {
     var body: some View {
         Group {
             if firebaseAccount.currentUser != nil {
-                TabView {
-                    PlaylistView()
-                        .tabItem {
-                            VStack{
-                                Image(systemName: "list.bullet")
-                                Text("Playlist")
-                            }
-                    }
-                    SettingsControllerView()
-                    .tabItem {
-                        VStack{
-                            Image(systemName: "gear")
-                            Text("Settings")
-                        }
-                    }
-                }
-                .accentColor(.green)
+                MainView()
             } else {
                 AccountAuthorizationScreen()
             }
@@ -50,7 +34,7 @@ struct AuthorizationChecker: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct AuthorizationChecker_Previews: PreviewProvider {
     static var previews: some View {
         AuthorizationChecker()
         .environmentObject(FirebaseAccountAuthorization())

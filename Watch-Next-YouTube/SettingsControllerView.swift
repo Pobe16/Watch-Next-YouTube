@@ -21,21 +21,29 @@ struct SettingsControllerView: View {
         
     }
     
+    @State var selectedOptionPanel: Int? = 7
+    
     var body: some View {
         
-        NavigationView (){
-            List {
+        NavigationView{
+            List() {
                 
                 Section(
                     header: Text("App Settings")
                 ){
-                    NavigationLink(destination: EmptyView()) {
-                        Text("Playlist Settings")
+                    NavigationLink(destination: EmptyView(), tag: 0, selection: $selectedOptionPanel) {
+                        Image(systemName: "play.circle.fill")
+                            .foregroundColor(.green)
+                        Text("Play Settings")
                     }
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: EmptyView(), tag: 1, selection: $selectedOptionPanel) {
+                        Image(systemName: "timer")
+                            .foregroundColor(.orange)
                         Text("Archive Settings")
                     }
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: EmptyView(), tag: 2, selection: $selectedOptionPanel) {
+                        Image(systemName: "gear")
+                            .foregroundColor(.black)
                         Text("General Settings")
                     }
                 }
@@ -43,40 +51,59 @@ struct SettingsControllerView: View {
                 Section(
                     header: Text("User Data")
                 ){
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: EmptyView(), tag: 3, selection: $selectedOptionPanel) {
+                        Image(systemName: "square.and.arrow.down")
+                            .foregroundColor(.blue)
                         Text("Import Playlist")
                     }
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: EmptyView(), tag: 4, selection: $selectedOptionPanel) {
+                        Image(systemName: "square.and.arrow.up")
+                            .foregroundColor(.green)
                         Text("Export Playlist")
-                    }
-                    NavigationLink(destination: EmptyView()) {
-                        Text("Edit Account Settings")
                     }
                 }
                 
                 Section(
                     header: Text("Legal")
                 ){
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: EmptyView(), tag: 5, selection: $selectedOptionPanel) {
+                        Image(systemName: "doc.text.magnifyingglass")
+                            .foregroundColor(.orange)
                         Text("Terms of Service")
                     }
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: EmptyView(), tag: 6, selection: $selectedOptionPanel) {
+                        Image(systemName: "hand.raised")
+                            .foregroundColor(.green)
                         Text("Privacy Policy")
                     }
                 }
                 
                 Section(
-                    header: Text("Danger Zone"),
-                    footer: HStack{
+                    header: Text("Account Settings")
+                ){
+                    NavigationLink(destination: AccountAuthorizationScreen(), tag: 7, selection: $selectedOptionPanel) {
+                        Image(systemName: "person")
+                            .foregroundColor(.orange)
+                        Text("Edit Account Settings")
+                    }
+                    NavigationLink(destination: EmptyView(), tag: 8, selection: $selectedOptionPanel) {
+                        Image(systemName: "escape")
+                            .foregroundColor(.black)
+                        Text("Log out")
+                    }
+                }
+                
+                Section(
+                header: Text("Danger Zone"),
+                footer: HStack{
                         Spacer()
                         Text("Created by Miko \"Pobe\" Lukasik")
                         Spacer()
                     }
                 ){
-                    NavigationLink(destination: EmptyView()) {
-                        Text("Log out")
-                    }
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: EmptyView(), tag: 0, selection: $selectedOptionPanel) {
+                        Image(systemName: "minus.circle")
+                            .foregroundColor(.red)
                         Text("Delete Account")
                             .foregroundColor(.red)
                     }
