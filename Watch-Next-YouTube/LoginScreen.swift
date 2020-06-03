@@ -24,7 +24,7 @@ struct LoginScreen: View {
                 self.showAppleLogin()
             }
             
-            ExtractedView()
+//            ExtractedView()
             
         }
     }

@@ -10,8 +10,8 @@ import Foundation
 
 struct Archive {
     static var current: [Video] = [
-        Video(imageName: "raywenderlichpodcast", title: "Interview with the Developer – Laurie Gray (2019)", author: "A Swiftly Tilting Planet", duration: 3179, numberOfViews: 41),
-        Video(imageName: "human-interface", title: "Apple's Human Interface Guidelines Overview", author: "Sean Allen", duration: 556, numberOfViews: 12230),
-        Video(imageName: "interview", title: "Learning SwiftUI with Laurie Gray - raywenderlich.com Season 10 Podcast", author: "raywenderlich.com", duration: 3546, numberOfViews: 458)
+        Video(videoID: "IztUmgXmYCo", imageName: "raywenderlichpodcast", title: "Interview with the Developer – Laurie Gray (2019)", author: "A Swiftly Tilting Planet", duration: 3179, numberOfViews: 41),
+        Video(videoID: "1oi5YVzxqsE", imageName: "human-interface", title: "Apple's Human Interface Guidelines Overview", author: "Sean Allen", duration: 556, numberOfViews: 12230),
+        Video(videoID: "36M4oVSTuwI", imageName: "interview", title: "Learning SwiftUI with Laurie Gray - raywenderlich.com Season 10 Podcast", author: "raywenderlich.com", duration: 3546, numberOfViews: 458)
     ]
 }

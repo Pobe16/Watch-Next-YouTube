@@ -10,6 +10,7 @@ import Foundation
 
 struct Video : Identifiable, Hashable {
     var id = UUID()
+    let videoID: String
     let imageName: String
     let title: String
     let author: String

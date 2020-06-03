@@ -8,17 +8,18 @@
 
 import SwiftUI
 
-struct WatchNext: View {
-    @State var videoID: String = ""
+struct MovieDetails: View {
+//    @ObservedObject var playerState: WatchNextPlayerState
+    
     
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 10) {
                 VStack{
-//                    Rectangle()
-                    YTView(videoID: self.$videoID)
+                    Spacer()
                     .aspectRatio(1.777, contentMode: .fit)
-                    .frame(width: geometry.size.width * 2 / 3)
+                        .frame(width: geometry.size.width * 0.6)
+                        
                     
                     Spacer()
                     
@@ -33,7 +34,7 @@ struct WatchNext: View {
                     Text("Coming next:")
                         .font(.title)
                     
-                    PlaylistVideoList(playlist: Playlist.current)
+                    PlaylistVideoList( playlist: Playlist.current)
                     .clipped()
                 }
             }
@@ -44,6 +45,6 @@ struct WatchNext: View {
 
 struct WatchNext_Previews: PreviewProvider {
     static var previews: some View {
-        WatchNext()
+        MovieDetails()
     }
 }
