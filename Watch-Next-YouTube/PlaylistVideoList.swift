@@ -10,6 +10,9 @@ import SwiftUI
 
 struct PlaylistVideoList: View {
     
+//    @ObservedObject var playerState: WatchNextPlayerState
+    @EnvironmentObject var playerState: WatchNextPlayerState
+    
     var playlist: [Video]
     
     func formatDuration(from seconds: Double) -> String {
@@ -50,12 +53,16 @@ struct PlaylistVideoList: View {
                         .foregroundColor(.gray)
                     
                     Image(item.imageName)
+                        
                         .resizable()
                         .aspectRatio(1.777, contentMode: .fit)
                         .frame(width: min(geometry.size.width, geometry.size.height) / 4)
                         .cornerRadius(min(geometry.size.width, geometry.size.height) / 100)
                         .shadow(color: Color("background_shadow_dark"), radius: 5, x: 10, y: 10)
                         .shadow(color: Color("background_shadow_light"), radius: 5, x: -10, y: -10)
+                        .onTapGesture {
+                            self.playerState.videoID = item.videoID
+                        }
                     
                     Spacer()
                         .frame(width: min(geometry.size.width, geometry.size.height) / 25)

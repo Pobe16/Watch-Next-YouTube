@@ -150,7 +150,6 @@ struct PlaylistView: View {
             
                         
         }
-            .edgesIgnoringSafeArea(.top)
     }
 }
 

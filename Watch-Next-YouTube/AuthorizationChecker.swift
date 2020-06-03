@@ -17,10 +17,10 @@ struct AuthorizationChecker: View {
         UITabBar.appearance().barTintColor = UIColor(named: "background_regular")
     }
     
-    func getUser () {
-        firebaseAccount.listen()
-        print(firebaseAccount.currentUser?.uid ?? "uid not found")
-    }
+//    func getUser () {
+//        firebaseAccount.listen()
+//        print(firebaseAccount.currentUser?.uid ?? "uid not found")
+//    }
 
     var body: some View {
         Group {

@@ -12,9 +12,24 @@ import YouTubePlayer
 
 class YouTubeVideoVC: UIViewController {
     
-    var videoID: String? = "w8MQGxIZ3kQ"
+    var videoID: String?{
+        didSet{
+            self.loadVideo()
+        }
+    }
     var playlistID: String?
     var updatecounter = 0
+    let playerVars = [
+        "controls": "0",
+        "playsinline": "0",
+        "autohide": "0",
+        "autoplay": "0",
+        "fs": "1",
+        "rel": "0",
+        "loop": "0",
+        "enablejsapi": "1",
+        "modestbranding": "1"
+    ]
 
     var videoPlayer = YouTubePlayerView(frame: .zero)
 
@@ -23,6 +38,7 @@ class YouTubeVideoVC: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        videoPlayer.playerVars = playerVars as YouTubePlayerView.YouTubePlayerParameters
         configureYTView()
         
     }
@@ -69,12 +85,31 @@ class YouTubeVideoVC: UIViewController {
     func playVideo() {
         videoPlayer.play()
     }
+    
+    func pauseVideo() {
+        videoPlayer.pause()
+    }
+    
+    func forward() {
+        videoPlayer.getCurrentTime { (time) in
+            guard let time = time else {return}
+            self.videoPlayer.seekTo(Float(time) + 5, seekAhead: true)
+        }
+    }
+    
+    func backward() {
+        videoPlayer.getCurrentTime { (time) in
+            guard let time = time else {return}
+            self.videoPlayer.seekTo(Float(time) - 5, seekAhead: true)
+        }
+    }
 
 }
 
 extension YouTubeVideoVC: YouTubePlayerDelegate {
     func playerReady(_ videoPlayer: YouTubePlayerView) {
         print("player ready")
+        playVideo()
     }
     
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
@@ -84,19 +119,38 @@ extension YouTubeVideoVC: YouTubePlayerDelegate {
 
 final class YTView: UIViewControllerRepresentable {
     
-    @Binding var videoID: String
+    var playerState: WatchNextPlayerState
     
-    init (videoID: Binding<String> = .constant("")) {
-        _videoID = videoID
+    init(playerState: WatchNextPlayerState) {
+        self.playerState = playerState
     }
-            
+                
     func makeUIViewController(context: Context) -> YouTubeVideoVC {
+        print(playerState.videoID)
         return YouTubeVideoVC()
     }
+    
     func updateUIViewController(_ uiViewController: YouTubeVideoVC, context: Context) {
+        print("###")
+        print("ytupdate")
+        print("###")
+        if playerState.videoID != uiViewController.videoID {
+            uiViewController.videoID = playerState.videoID
+        }
         
-        if videoID.count > 0 {
-            uiViewController.videoID = videoID
+        if !(playerState.executeCommand == .idle) && uiViewController.videoPlayer.ready {
+            switch playerState.executeCommand {
+            case .play:
+                uiViewController.playVideo()
+            case .pause:
+                uiViewController.pauseVideo()
+            case .forward:
+                uiViewController.forward()
+            case .backward:
+                uiViewController.backward()
+            default:
+                print("\(playerState.executeCommand) not yet implemented")
+            }
         }
         
     }

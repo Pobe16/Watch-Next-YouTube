@@ -25,11 +25,14 @@
 		C8B12743247D9F6A00D1E050 /* NavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B12742247D9F6A00D1E050 /* NavigationConfigurator.swift */; };
 		C8B12747247E671900D1E050 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B12746247E671900D1E050 /* MainView.swift */; };
 		C8B12749247E8C4500D1E050 /* YouTubeVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B12748247E8C4500D1E050 /* YouTubeVideoVC.swift */; };
-		C8B1274D247EAA9700D1E050 /* WatchNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B1274C247EAA9700D1E050 /* WatchNext.swift */; };
+		C8B1274D247EAA9700D1E050 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B1274C247EAA9700D1E050 /* MovieDetails.swift */; };
 		C8B1274F247EBE7F00D1E050 /* PlaylistVideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B1274E247EBE7F00D1E050 /* PlaylistVideoList.swift */; };
 		C8B12751247ED1AC00D1E050 /* ArchiveOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B12750247ED1AC00D1E050 /* ArchiveOld.swift */; };
 		C8C4231C246AE69F00EC932B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8C4231B246AE69F00EC932B /* GoogleService-Info.plist */; };
 		C8E1838724742FE9000B1DF2 /* AppleSignInButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E1838624742FE9000B1DF2 /* AppleSignInButtons.swift */; };
+		C8F0014B2486FECE00BBD1B5 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0014A2486FECE00BBD1B5 /* View+Ext.swift */; };
+		C8F0014D24870C9400BBD1B5 /* WatchNextPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F0014C24870C9400BBD1B5 /* WatchNextPlayerState.swift */; };
+		C8F001532487ED3100BBD1B5 /* YouTubeInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F001522487ED3100BBD1B5 /* YouTubeInterface.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,11 +58,14 @@
 		C8B12742247D9F6A00D1E050 /* NavigationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationConfigurator.swift; sourceTree = "<group>"; };
 		C8B12746247E671900D1E050 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C8B12748247E8C4500D1E050 /* YouTubeVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeVideoVC.swift; sourceTree = "<group>"; };
-		C8B1274C247EAA9700D1E050 /* WatchNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchNext.swift; sourceTree = "<group>"; };
+		C8B1274C247EAA9700D1E050 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		C8B1274E247EBE7F00D1E050 /* PlaylistVideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVideoList.swift; sourceTree = "<group>"; };
 		C8B12750247ED1AC00D1E050 /* ArchiveOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveOld.swift; sourceTree = "<group>"; };
 		C8C4231B246AE69F00EC932B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8E1838624742FE9000B1DF2 /* AppleSignInButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInButtons.swift; sourceTree = "<group>"; };
+		C8F0014A2486FECE00BBD1B5 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		C8F0014C24870C9400BBD1B5 /* WatchNextPlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchNextPlayerState.swift; sourceTree = "<group>"; };
+		C8F001522487ED3100BBD1B5 /* YouTubeInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeInterface.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 		C81360D62464287200CA693D /* Watch-Next-YouTube */ = {
 			isa = PBXGroup;
 			children = (
+				C8F001492486FEAB00BBD1B5 /* Extensions */,
 				C8B12744247D9F8800D1E050 /* Configurators */,
 				C870E6B92476F61A004C07CB /* DataModel */,
 				C870E6B02476F5B2004C07CB /* TestData */,
@@ -121,13 +128,15 @@
 				C870E6AE2476EC67004C07CB /* AuthorizationChecker.swift */,
 				C81CB62E2479791B008CA896 /* LoginScreen.swift */,
 				C8B12746247E671900D1E050 /* MainView.swift */,
+				C8F001522487ED3100BBD1B5 /* YouTubeInterface.swift */,
 				C870E6BE2476F917004C07CB /* SettingsControllerView.swift */,
 				C8B1273E247D463700D1E050 /* RegisterScreen.swift */,
 				C8B1274E247EBE7F00D1E050 /* PlaylistVideoList.swift */,
 				C870E6BC2476F632004C07CB /* PlaylistView.swift */,
 				C8B12750247ED1AC00D1E050 /* ArchiveOld.swift */,
 				C8B12748247E8C4500D1E050 /* YouTubeVideoVC.swift */,
-				C8B1274C247EAA9700D1E050 /* WatchNext.swift */,
+				C8F0014C24870C9400BBD1B5 /* WatchNextPlayerState.swift */,
+				C8B1274C247EAA9700D1E050 /* MovieDetails.swift */,
 				C8B12745247D9FB600D1E050 /* Base */,
 				C81360E52464287300CA693D /* Info.plist */,
 				C8C4231B246AE69F00EC932B /* GoogleService-Info.plist */,
@@ -178,6 +187,14 @@
 				C81CB62C24796C49008CA896 /* FirebaseAccountAuthorization.swift */,
 			);
 			path = "Authorization helpers";
+			sourceTree = "<group>";
+		};
+		C8F001492486FEAB00BBD1B5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C8F0014A2486FECE00BBD1B5 /* View+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,17 +331,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				C81CB62F2479791B008CA896 /* LoginScreen.swift in Sources */,
+				C8F001532487ED3100BBD1B5 /* YouTubeInterface.swift in Sources */,
 				C81360D82464287200CA693D /* AppDelegate.swift in Sources */,
 				C81CB62D24796C49008CA896 /* FirebaseAccountAuthorization.swift in Sources */,
 				C8E1838724742FE9000B1DF2 /* AppleSignInButtons.swift in Sources */,
-				C8B1274D247EAA9700D1E050 /* WatchNext.swift in Sources */,
+				C8B1274D247EAA9700D1E050 /* MovieDetails.swift in Sources */,
 				C870E6B42476F5CD004C07CB /* Playlist.swift in Sources */,
 				C8B12751247ED1AC00D1E050 /* ArchiveOld.swift in Sources */,
 				C870E6AF2476EC67004C07CB /* AuthorizationChecker.swift in Sources */,
 				C870E6BD2476F632004C07CB /* PlaylistView.swift in Sources */,
 				C870E6BF2476F917004C07CB /* SettingsControllerView.swift in Sources */,
+				C8F0014D24870C9400BBD1B5 /* WatchNextPlayerState.swift in Sources */,
 				C870E6BB2476F628004C07CB /* Video.swift in Sources */,
 				C8B1273F247D463700D1E050 /* RegisterScreen.swift in Sources */,
+				C8F0014B2486FECE00BBD1B5 /* View+Ext.swift in Sources */,
 				C8B1274F247EBE7F00D1E050 /* PlaylistVideoList.swift in Sources */,
 				C81CB62B24796355008CA896 /* AccountAuthorizationScreen.swift in Sources */,
 				C870E6B32476F5CD004C07CB /* Archive.swift in Sources */,
