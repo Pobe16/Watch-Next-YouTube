@@ -17,6 +17,7 @@ enum playerSizeState {
 }
 
 enum playerCommandToExecute {
+    case loadNewVideo
     case play
     case pause
     case forward
@@ -29,12 +30,12 @@ class WatchNextPlayerState: ObservableObject {
     let objectDidChange = PassthroughSubject<WatchNextPlayerState, Never>()
     
     private var previousPlayerSize: playerSizeState = .inline
-    private var videoState: playerCommandToExecute = .play
+    var videoState: playerCommandToExecute = .loadNewVideo
     
     @Published var videoID: String = "w8MQGxIZ3kQ" {
         didSet {
             self.objectDidChange.send(self)
-            self.executeCommand = .idle
+            self.executeCommand = .loadNewVideo
         }
     }
     
@@ -48,6 +49,14 @@ class WatchNextPlayerState: ObservableObject {
     }
     
     @Published var executeCommand: playerCommandToExecute = .idle {
+        didSet { self.objectDidChange.send(self) }
+    }
+    
+    @Published var videoDuration: Double = 0 {
+        didSet { self.objectDidChange.send(self) }
+    }
+    
+    @Published var currentTime: Double = 0 {
         didSet { self.objectDidChange.send(self) }
     }
     
@@ -79,6 +88,10 @@ class WatchNextPlayerState: ObservableObject {
             executeCommand = .pause
             videoState = .pause
         } else if videoState == .pause {
+            executeCommand = .play
+            videoState = .play
+        } else {
+            print("Unknown player state, attempring playing")
             executeCommand = .play
             videoState = .play
         }
