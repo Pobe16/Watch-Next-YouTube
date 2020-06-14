@@ -9,9 +9,10 @@
 import SwiftUI
 
 struct YouTubeInterface: View {
-    @EnvironmentObject var playerState: WatchNextPlayerState
+    @EnvironmentObject var playerState: YouTubeControlState
     @State var showInterface: Bool = true
-    @State var sliderValue: Double = 0
+    
+    @State var interfaceTimer: Timer?
     
     func formatDuration(from seconds: Double) -> String {
         let formatter = DateComponentsFormatter()
@@ -25,44 +26,63 @@ struct YouTubeInterface: View {
         return formatter.string(from: TimeInterval(seconds))!
     }
     
+    func showFullScreenButton() {
+        if playerState.videoState == .pause {
+            showInterface = true
+        } else {
+            interfaceTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
+                if self.playerState.videoState == .pause {
+                    self.interfaceTimer?.invalidate()
+                    self.showInterface = true
+                } else {
+                    self.showInterface = false
+                }
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
-//            YTView()
+//            YouTubeView()
             
-            YTView(playerState: self.playerState)
-            
-            VStack {
-                HStack(spacing: 0){
-                    Rectangle().foregroundColor(Color("button_transparent"))
-                    .onTapGesture(count: 2) {
-                        self.playerState.backwardDoubleTapped()
-                    }
-                    Rectangle().foregroundColor(Color("button_transparent"))
-                    .onTapGesture {
-                        self.playerState.playPauseButtonTapped()
-                    }
-                    Rectangle().foregroundColor(Color("button_transparent"))
-                    .onTapGesture(count: 2) {
-                        self.playerState.forwardDoubleTapped()
-                    }
+            YouTubeView(playerState: playerState)
+//                .edgesIgnoringSafeArea(.bottom)
+                .onTapGesture {
+                    self.showInterface = true
+                    self.showFullScreenButton()
                 }
+            
+            VStack(alignment: .trailing) {
+                Spacer()
+//                HStack(spacing: 0){
+//                    Rectangle().foregroundColor(Color("button_transparent"))
+//                    .onTapGesture(count: 2) {
+//                        self.playerState.backwardDoubleTapped()
+//                    }
+//                    Rectangle().foregroundColor(Color("button_transparent"))
+//                    .onTapGesture {
+//                        self.playerState.playPauseButtonTapped()
+//                    }
+//                    Rectangle().foregroundColor(Color("button_transparent"))
+//                    .onTapGesture(count: 2) {
+//                        self.playerState.forwardDoubleTapped()
+//                    }
+//                }
                 if showInterface {
-                    HStack{
-                        Image(systemName: self.playerState.videoState == .pause || self.playerState.videoState == .stop ? "play.circle.fill" : "pause.circle.fill")
-                            .resizable()
-                            .aspectRatio(1, contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                            .padding()
-                        .onTapGesture {
-                            self.playerState.playPauseButtonTapped()
+                    HStack(alignment: .bottom){
+                        Spacer()
+                        Image(systemName: self.playerState.playerSize == .fullscreen ?
+                            "arrow.down.right.and.arrow.up.left" :
+                            "arrow.up.left.and.arrow.down.right" )
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                        .padding()
+                        .onAppear(perform: showFullScreenButton)
+                        .onTapGesture{
+                            self.playerState.fullScreenButtonTapped()
                         }
-                        Text(formatDuration(from: playerState.currentTime))
-                        Slider(value: $playerState.currentTime, in: 0...playerState.videoDuration)
-                        Text(formatDuration(from: playerState.videoDuration))
                     }
-                    .frame(height: 50)
-                } else {
-                    /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
                 }
             }
         }
@@ -71,7 +91,7 @@ struct YouTubeInterface: View {
 
 //struct YouTubeInterface_Previews: PreviewProvider {
 //    static var previews: some View {
-//        YouTubeInterface().environmentObject(WatchNextPlayerState())
+//        YouTubeInterface().environmentObject(YouTubeControlState())
 //            .previewLayout(.fixed(width: 600, height: 400))
 //    }
 //}

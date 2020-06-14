@@ -10,9 +10,9 @@ import SwiftUI
 
 struct MainView: View {
     
-    @EnvironmentObject var playerState: WatchNextPlayerState
+    @EnvironmentObject var playerState: YouTubeControlState
     
-//    @ObservedObject var playerState: WatchNextPlayerState = WatchNextPlayerState()
+//    @ObservedObject var playerState: YouTubeControlState = YouTubeControlState()
     
     func decideHeight(size: CGSize) -> CGFloat {
         switch playerState.playerSize {
@@ -80,7 +80,8 @@ struct MainView: View {
                 YouTubeInterface()
                 .animation(.easeInOut(duration: 0.3))
                 .background(Color.clear)
-                .edgesIgnoringSafeArea(self.playerState.playerSize == .fullscreen ? .all : .leading)
+                .edgesIgnoringSafeArea(.all)
+//                .edgesIgnoringSafeArea(self.playerState.playerSize == .fullscreen ? .all : .leading)
                 .frame(
                     width: self.decideWidth(size: geometry.size),
                     height: self.decideHeight(size: geometry.size)

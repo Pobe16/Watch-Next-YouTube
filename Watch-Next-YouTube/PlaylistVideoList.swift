@@ -11,7 +11,7 @@ import SwiftUI
 struct PlaylistVideoList: View {
     
 //    @ObservedObject var playerState: WatchNextPlayerState
-    @EnvironmentObject var playerState: WatchNextPlayerState
+    @EnvironmentObject var playerState: YouTubeControlState
     
     var playlist: [Video]
     

@@ -1,5 +1,5 @@
 //
-//  WatchNextPlayerState.swift
+//  YouTubeControlState.swift
 //  Watch-Next-YouTube
 //
 //  Created by Mikolaj Lukasik on 02/06/2020.
@@ -22,43 +22,28 @@ enum playerCommandToExecute {
     case pause
     case forward
     case backward
-    case idle
     case stop
+    case idle
 }
 
-class WatchNextPlayerState: ObservableObject {
-    let objectDidChange = PassthroughSubject<WatchNextPlayerState, Never>()
+class YouTubeControlState: ObservableObject {
     
     private var previousPlayerSize: playerSizeState = .inline
-    var videoState: playerCommandToExecute = .loadNewVideo
+    @Published var videoState: playerCommandToExecute = .loadNewVideo
     
-    @Published var videoID: String = "w8MQGxIZ3kQ" {
+    @Published var videoID: String? // = "qRC4Vk6kisY"
+    {
         didSet {
-            self.objectDidChange.send(self)
             self.executeCommand = .loadNewVideo
         }
     }
     
-    @Published var playerSize: playerSizeState = .inline{
-        didSet { self.objectDidChange.send(self) }
-        
-    }
+    @Published var playerSize: playerSizeState = .inline
     
-    @Published var minimiseAlignment: Alignment = .topLeading {
-        didSet { self.objectDidChange.send(self) }
-    }
+    @Published var minimiseAlignment: Alignment = .topLeading
     
-    @Published var executeCommand: playerCommandToExecute = .idle {
-        didSet { self.objectDidChange.send(self) }
-    }
+    @Published var executeCommand: playerCommandToExecute = .idle
     
-    @Published var videoDuration: Double = 0 {
-        didSet { self.objectDidChange.send(self) }
-    }
-    
-    @Published var currentTime: Double = 0 {
-        didSet { self.objectDidChange.send(self) }
-    }
     
     func showVideo() {
         minimiseAlignment = .topLeading
@@ -67,6 +52,14 @@ class WatchNextPlayerState: ObservableObject {
     
     func hideVideo() {
         playerSize = .hidden
+    }
+    
+    func fullScreenButtonTapped() {
+        if playerSize == .fullscreen {
+            exitFullScreen()
+        } else {
+            makeFullScreen()
+        }
     }
     
     func makeFullScreen() {
@@ -85,16 +78,21 @@ class WatchNextPlayerState: ObservableObject {
     
     func playPauseButtonTapped() {
         if videoState == .play {
-            executeCommand = .pause
-            videoState = .pause
+            pauseVideo()
         } else if videoState == .pause {
-            executeCommand = .play
-            videoState = .play
+            playVideo()
         } else {
-            print("Unknown player state, attempring playing")
-            executeCommand = .play
-            videoState = .play
+            print("Unknown player state, attempting playing")
+            playVideo()
         }
+    }
+    
+    func playVideo() {
+        executeCommand = .play
+    }
+    
+    func pauseVideo() {
+        executeCommand = .pause
     }
     
     func forwardDoubleTapped() {
@@ -104,6 +102,4 @@ class WatchNextPlayerState: ObservableObject {
     func backwardDoubleTapped() {
         executeCommand = .backward
     }
-    
-    static var shared = WatchNextPlayerState()
 }
