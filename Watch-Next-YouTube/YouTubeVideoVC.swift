@@ -10,15 +10,13 @@ import SwiftUI
 import UIKit
 import YouTubePlayer
 
-final class YTView: UIViewRepresentable {
+struct YouTubeView: UIViewRepresentable {
     
     typealias UIViewType = YouTubePlayerView
     
+    @ObservedObject var playerState: YouTubeControlState
     
-    
-    @ObservedObject var playerState: WatchNextPlayerState
-    
-    init(playerState: WatchNextPlayerState) {
+    init(playerState: YouTubeControlState) {
         self.playerState = playerState
     }
     
@@ -28,7 +26,7 @@ final class YTView: UIViewRepresentable {
                 
     func makeUIView(context: Context) -> UIViewType {
         let playerVars = [
-            "controls": "0",
+            "controls": "1",
             "playsinline": "0",
             "autohide": "0",
             "autoplay": "0",
@@ -43,55 +41,55 @@ final class YTView: UIViewRepresentable {
         
         ytVideo.playerVars = playerVars as YouTubePlayerView.YouTubePlayerParameters
         ytVideo.delegate = context.coordinator
-        print("creatingview")
         
         return ytVideo
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         
+        guard let videoID = playerState.videoID else { return }
+        
         if !(playerState.executeCommand == .idle) && uiView.ready {
             switch playerState.executeCommand {
             case .loadNewVideo:
                 playerState.executeCommand = .idle
-                uiView.loadVideoID(playerState.videoID)
+                uiView.loadVideoID(videoID)
             case .play:
+                playerState.executeCommand = .idle
                 uiView.play()
             case .pause:
+                playerState.executeCommand = .idle
                 uiView.pause()
             case .forward:
+                playerState.executeCommand = .idle
                 uiView.getCurrentTime { (time) in
                     guard let time = time else {return}
-                    uiView.seekTo(Float(time) + 5, seekAhead: true)
+                    uiView.seekTo(Float(time) + 10, seekAhead: true)
                 }
             case .backward:
+                playerState.executeCommand = .idle
                 uiView.getCurrentTime { (time) in
                     guard let time = time else {return}
-                    uiView.seekTo(Float(time) - 5, seekAhead: true)
+                    uiView.seekTo(Float(time) - 10, seekAhead: true)
                 }
             default:
+                playerState.executeCommand = .idle
                 print("\(playerState.executeCommand) not yet implemented")
             }
         } else if !uiView.ready {
-            uiView.loadVideoID(playerState.videoID)
+            uiView.loadVideoID(videoID)
         }
         
     }
     
     class Coordinator: YouTubePlayerDelegate {
-        @ObservedObject var playerState: WatchNextPlayerState
+        @ObservedObject var playerState: YouTubeControlState
         
-        var positionTimer: Timer?
-        
-        init(playerState: WatchNextPlayerState) {
+        init(playerState: YouTubeControlState) {
             self.playerState = playerState
         }
         
         func playerReady(_ videoPlayer: YouTubePlayerView) {
-            videoPlayer.getDuration { (time) in
-                guard let unwrappedTime = time else { return }
-                self.playerState.videoDuration = unwrappedTime
-            }
             videoPlayer.play()
             playerState.videoState = .play
         }
@@ -100,26 +98,17 @@ final class YTView: UIViewRepresentable {
             
             switch playerState {
             case .Playing:
-                positionTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(setCurrentTime), userInfo: videoPlayer, repeats: true)
-            case .Paused, .Ended:
-                positionTimer?.invalidate()
+                self.playerState.videoState = .play
+            case .Paused, .Ended, .Buffering, .Unstarted:
+                self.playerState.videoState = .pause
             default:
                 print("\(playerState) not implemented")
             }
             
 
         }
-        
-        @objc func setCurrentTime() {
-            let videoPlayer = positionTimer?.userInfo as! YouTubePlayerView as YouTubePlayerView
-            videoPlayer.getCurrentTime { (time) in
-                guard let unwrappedTime = time else { return }
-                self.playerState.currentTime = unwrappedTime
-            }
-        }
     }
-    
-    
+
 }
 
 

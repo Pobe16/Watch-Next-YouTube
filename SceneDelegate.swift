@@ -24,14 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         firebaseAuthorization.listen()
         
-        let playerState = WatchNextPlayerState()
-        
-//        if let currentUser = Auth.auth().currentUser {
-//            print(currentUser.uid)
-//        } else {
-//            print("no user")
-//        }
-        
+        let playerState = YouTubeControlState()
         
         // Create the SwiftUI view that provides the window contents.
         let contentView = AuthorizationChecker()
